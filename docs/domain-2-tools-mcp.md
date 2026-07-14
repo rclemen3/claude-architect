@@ -122,7 +122,7 @@ See **COURSE-FLOW.md Segment 2** for the live walkthrough, which is taught from 
 
 [`segment-2-5-control-surfaces.ipynb`](../notebooks/segment-2-5-control-surfaces.ipynb) is the off-clock self-study deep dive, and it's where this domain gets its full treatment: the three tiers tools come from (Anthropic-hosted server tools, MCP-server tools, the Claude Code harness surface), all four `tool_choice` modes run live as an A/B, `disable_parallel_tool_use` when ordering matters, and **runtime MCP discovery via `list_tools`**. If one notebook in this repo earns a second pass before the exam, it's that one.
 
-For the managed-agent view of tool design, [`examples/agents_api/03_tools_and_structured_errors.ipynb`](../examples/agents_api/03_tools_and_structured_errors.ipynb) runs one custom tool plus a structured tool error with retry-once, where the result comes back as a `user.custom_tool_result` event keyed by `custom_tool_use_id` and carrying `is_error`. Same contract as the `tool_result` shape above, different transport.
+For the managed-agent view of tool design, [`notebooks/06-managed-agents/03_tools_and_structured_errors.ipynb`](../notebooks/06-managed-agents/03_tools_and_structured_errors.ipynb) runs one custom tool plus a structured tool error with retry-once, where the result comes back as a `user.custom_tool_result` event keyed by `custom_tool_use_id` and carrying `is_error`. Same contract as the `tool_result` shape above, different transport.
 
 ### Task-statement coverage
 

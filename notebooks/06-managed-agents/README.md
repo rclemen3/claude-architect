@@ -1,4 +1,4 @@
-# agents_api/ - Managed Agents teaching notebooks
+# 06-managed-agents/ - Managed Agents teaching notebooks
 
 Six small, teaching-quality notebooks on the **Managed Agents API**, each banded to a **CCA-F** exam domain and themed to keep the mechanics memorable. They follow the `first_request.ipynb` mold: one idea per cell, markdown explains **why**, the create -> send -> stream -> idle -> teardown spine repeats so it becomes muscle memory.
 
@@ -21,7 +21,7 @@ Six small, teaching-quality notebooks on the **Managed Agents API**, each banded
 
 - These notebooks make **live, billable, beta-gated** calls against the **Managed Agents API**. Every call carries the beta header **`managed-agents-2026-04-01`**.
 - Your key must have **Managed Agents beta access**, or the first create returns a 403.
-- They read `examples/.env` via `python-dotenv`. Copy **`.env.example`** to `.env` and set `ANTHROPIC_API_KEY`.
+- They read `notebooks/.env` via `python-dotenv` (one level up - no separate `.env` for this suite). Copy **`.env.example`** to `notebooks/.env` and set `ANTHROPIC_API_KEY` if you haven't already.
 - **Kernel:** pick **`claude-architect`** (pinned to `notebooks/.venv`). If it is missing on a fresh clone, register it once:
 
   ```powershell

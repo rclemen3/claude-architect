@@ -16,7 +16,7 @@
                    argv[0] points at notebooks/.venv (not a stray system Python)
       MCP config   .mcp.json and .vscode/mcp.json both parse, and the FastMCP
                    demo server carries the same name in both
-      Notebooks    all seven .ipynb present and each parses as JSON
+      Notebooks    all 23 .ipynb present (7 root + 16 self-paced) and each parses as JSON
       Ports        8888 (Jupyter), 6274/6277 (Inspector) reported free or held
 
     This script CHANGES NOTHING. It only reports. Run it, read the board, then
@@ -237,6 +237,9 @@ if ($claudeServers -contains 'cca-study-mcp') {
 
 # --- Notebooks -------------------------------------------------------------
 # Presence AND parse. A corrupt .ipynb opens as a blank tab in front of a cohort.
+# Root: the 7 live-clock + off-clock notebooks. Subdirectories: the two
+# self-paced suites unified into notebooks/ on 2026-07-14 (00-prerequisites/
+# was examples/messages_api/, 06-managed-agents/ was examples/agents_api/).
 $expectedNotebooks = @(
     'segment-0-pre-flight.ipynb'
     'segment-1-customer-support-agent.ipynb'
@@ -245,6 +248,22 @@ $expectedNotebooks = @(
     'segment-3-invoice-extractor.ipynb'
     'segment-4-cca-f-capstone.ipynb'
     'cca-f-exam-mastery.ipynb'
+    '00-prerequisites\001_requests.ipynb'
+    '00-prerequisites\001_requests_exercise.ipynb'
+    '00-prerequisites\002_system_prompt.ipynb'
+    '00-prerequisites\002_system_prompt_exercise.ipynb'
+    '00-prerequisites\003_temperature.ipynb'
+    '00-prerequisites\004_streaming.ipynb'
+    '00-prerequisites\005_controlling_output.ipynb'
+    '00-prerequisites\005_controlling_output_exercise.ipynb'
+    '00-prerequisites\first_request.ipynb'
+    '00-prerequisites\multi_turn_conversation.ipynb'
+    '06-managed-agents\01_agentic_loop_and_sessions.ipynb'
+    '06-managed-agents\02_coordinator_and_subagents.ipynb'
+    '06-managed-agents\03_tools_and_structured_errors.ipynb'
+    '06-managed-agents\04_structured_output_and_validation.ipynb'
+    '06-managed-agents\05_context_and_escalation.ipynb'
+    '06-managed-agents\06_cca_f_capstone.ipynb'
 )
 $nbBad = @()
 foreach ($nb in $expectedNotebooks) {
@@ -261,10 +280,10 @@ foreach ($nb in $expectedNotebooks) {
     }
 }
 if ($nbBad.Count -eq 0) {
-    Add-Check 'Notebooks' 'all 7 present and parse' 'PASS' '5 live-taught, 2 off-clock'
+    Add-Check 'Notebooks' 'all 23 present and parse' 'PASS' '5 live-taught, 2 off-clock, 16 self-paced'
 }
 else {
-    Add-Check 'Notebooks' 'all 7 present and parse' 'FAIL' ($nbBad -join '; ')
+    Add-Check 'Notebooks' 'all 23 present and parse' 'FAIL' ($nbBad -join '; ')
 }
 
 # --- Ports -----------------------------------------------------------------

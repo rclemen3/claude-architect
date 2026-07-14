@@ -108,7 +108,10 @@ if (Test-Path $claudeMd) {
 $nbDir = Join-Path $Path 'notebooks'
 $nbFiles = @()
 if (Test-Path $nbDir) {
-    $nbFiles = Get-ChildItem -Path $nbDir -Filter '*.ipynb' -File
+    # Recurse: notebooks/ now nests 00-prerequisites/ and 06-managed-agents/
+    # alongside the root segment notebooks. .venv and checkpoint dirs are excluded.
+    $nbFiles = Get-ChildItem -Path $nbDir -Filter '*.ipynb' -File -Recurse |
+        Where-Object { $_.FullName -notmatch '\\\.venv\\' -and $_.FullName -notmatch '\\\.ipynb_checkpoints\\' }
 }
 
 foreach ($nb in $nbFiles) {

@@ -1,20 +1,26 @@
 # Claude Architect Foundations - Notebooks
 
-The seven teaching notebooks for the four-hour O'Reilly live training: five live-taught segments, one self-study deep dive (Segment 2.5), and one off-clock exam-mastery reference. The class is taught **from these notebooks**. Markdown cells carry the concepts. Code cells carry the demos. Run them top to bottom.
+The complete notebook course for the four-hour O'Reilly live training, unified into one tree: a prerequisite on-ramp, five live-taught segments, one self-study deep dive (Segment 2.5), the managed-agents counterpart suite, and one off-clock exam-mastery reference. **23 notebooks total, one venv, one kernel** (`claude-architect`). Markdown cells carry the concepts. Code cells carry the demos. Run them top to bottom.
 
 ## What's here
 
-| Notebook | Backs | Live runtime |
+Directory order below is read order. Numeric prefixes on `00-prerequisites/` and `06-managed-agents/` place them before and after the five live segments, so a plain file listing shows the whole course sequence without needing this table.
+
+| Location | Backs | Live runtime |
 |---|---|---|
+| [`00-prerequisites/`](00-prerequisites/README.md) | **On-ramp.** Ten Messages API primer notebooks - study before or alongside Segment 1 if the raw API is new to you | self-study |
 | `segment-0-pre-flight.ipynb` | Top-of-class verification (optional, 5 min) | 5 min |
 | `segment-1-customer-support-agent.ipynb` | Segment 1: Building AI Agents That Use Tools | 50 min |
 | `segment-2-tool-design-and-mcp.ipynb` | Segment 2: Tool Design, Integration, Claude Code | 50 min |
 | `segment-2-5-control-surfaces.ipynb` | **Segment 2.5: Control surfaces, tool enumeration, Console assets (self-study)** | *off-clock* |
 | `segment-3-invoice-extractor.ipynb` | Segment 3: Structured Output, Context, Reliability | 50 min |
 | `segment-4-cca-f-capstone.ipynb` | Segment 4: CCA-F Certification Capstone | 50 min |
+| [`06-managed-agents/`](06-managed-agents/README.md) | **Managed counterpart.** Six domain-banded Managed Agents notebooks - study after Segment 2.5 or alongside any live segment | self-study |
 | `cca-f-exam-mastery.ipynb` | **Exam-mastery reference: all five domains, all 30 task statements (post-class study)** | *off-clock* |
 
-Each segment notebook ships with **Learning Objectives**, **Concept** markdown cells, **Demo** code cells, **Exercise** prompts, **Key Takeaways**, a **Bridge to next segment**, and a **"Going further" appendix** that links the repo's other teaching assets (the `../examples/` suites, the vendored cookbook, and the domain reference scaffolds). The four-hour class is the five live segments in order plus three ten-minute breaks. Segment 2.5 is a deep-dive self-study notebook that ties together every control surface the live segments touch lightly: all four `tool_choice` modes plus `disable_parallel_tool_use`, `stop_sequences`, `max_tokens` as a control lever, MCP `list_tools` discovery, and the live Claude Console asset surface (`memory_stores`, `vaults`, `agents`, `sessions`). Walked end to end it runs about 75 minutes against the live API.
+Each segment notebook ships with **Learning Objectives**, **Concept** markdown cells, **Demo** code cells, **Exercise** prompts, **Key Takeaways**, a **Bridge to next segment**, and a **"Going further" appendix** that links the repo's other teaching assets (`00-prerequisites/`, `06-managed-agents/`, the vendored cookbook, and the domain reference scaffolds). The four-hour class is the five live segments in order plus three ten-minute breaks. Segment 2.5 is a deep-dive self-study notebook that ties together every control surface the live segments touch lightly: all four `tool_choice` modes plus `disable_parallel_tool_use`, `stop_sequences`, `max_tokens` as a control lever, MCP `list_tools` discovery, and the live Claude Console asset surface (`memory_stores`, `vaults`, `agents`, `sessions`). Walked end to end it runs about 75 minutes against the live API.
+
+**Reworked 2026-07-14 (round two).** `examples/messages_api/` and `examples/agents_api/` moved into this tree as `00-prerequisites/` and `06-managed-agents/` - one course, one venv, one kernel, instead of two differently-configured trees connected only by prose links. `examples/` now holds only `mcp_cli/`, a genuinely separate vendored app. All 23 notebooks stamp the `claude-architect` kernel (3 previously stamped the generic `python3` kernel by mistake; all 7 segment notebooks previously used `python3` too - now consistent everywhere).
 
 **Reworked 2026-07-14.** The five live notebooks got a teachability pass: markdown trimmed roughly 30% so the prose supports the talk track instead of competing with it, and **Segment 1 gained a "one tool call, no loop" rung** that sits between the bare Messages API call and the full agentic loop, so learners see the single hop before they see the cycle.
 
@@ -26,7 +32,7 @@ Each segment notebook ships with **Learning Objectives**, **Concept** markdown c
 
 ## Cookbook anchor (optional self-study)
 
-Several notebook cells cite Anthropic's official cookbook with `../claude-cookbooks-main/...` paths. The cookbook is **vendored at the repo root** (MIT, Copyright (c) 2023 Anthropic, see [`../claude-cookbooks-main/NOTICE.md`](../claude-cookbooks-main/NOTICE.md)). You get the whole reference library on `git clone`, no second clone required. Every code cell in `notebooks/` runs independently of the cookbook; the citations open Anthropic's authoritative notebooks for deeper study.
+Several notebook cells cite Anthropic's official cookbook with `../claude-cookbooks-main/...` paths (or `../../claude-cookbooks-main/...` from `00-prerequisites/` and `06-managed-agents/`). The cookbook is **vendored at the repo root** (MIT, Copyright (c) 2023 Anthropic, see [`../claude-cookbooks-main/NOTICE.md`](../claude-cookbooks-main/NOTICE.md)). You get the whole reference library on `git clone`, no second clone required. Every code cell in `notebooks/` runs independently of the cookbook; the citations open Anthropic's authoritative notebooks for deeper study.
 
 ## Install (on-rails via uv)
 
@@ -96,9 +102,9 @@ ANTHROPIC_API_KEY=sk-ant-...
 
 The notebooks call `dotenv.load_dotenv()` if the file exists. Never hardcode the key in a cell.
 
-## Smoke test (run all seven end-to-end)
+## Smoke test
 
-This is the dry-run before each cohort delivery. Budget roughly **$1** in API spend.
+The **seven root notebooks** (segment-0 through segment-4, segment-2-5, exam-mastery) are the dry-run before each cohort delivery. Budget roughly **$1** in API spend.
 
 ```powershell
 cd C:\github\claude-architect
@@ -116,6 +122,8 @@ Remove-Item notebooks\_smoke-*.ipynb
 
 Each run must finish with no exceptions. If anything fails, fix it **before** class. The one expected skip is the exam-mastery notebook's MCP `list_tools` cell, explained above. The `_smoke-*.ipynb` artifacts are **gitignored** and transient by design, so the trailing `Remove-Item` is housekeeping, not a safety net.
 
+**`00-prerequisites/` and `06-managed-agents/`** (16 notebooks) are verified by hand against the live API rather than in this automated sweep - see each subdirectory's README for status. Their code doesn't change often; when it does, smoke the touched notebook individually with the same `nbconvert --execute` pattern, path adjusted.
+
 ## Voice lint (zero hits required)
 
 The Tim-voice rules from `CLAUDE.md` apply to every markdown cell. Run before committing:
@@ -129,7 +137,9 @@ patterns = {
     'ask-as-noun': r'\bthe\s+ask\b|\ban\s+ask\b|\bbig\s+ask\b|\bheavy\s+ask\b',
 }
 hits = 0
-for nb_path in pathlib.Path('notebooks').glob('*.ipynb'):
+for nb_path in pathlib.Path('notebooks').rglob('*.ipynb'):
+    if '.venv' in nb_path.parts or '.ipynb_checkpoints' in nb_path.parts:
+        continue
     nb = json.loads(nb_path.read_text(encoding='utf-8'))
     for i, cell in enumerate(nb['cells']):
         if cell['cell_type'] != 'markdown':
@@ -148,7 +158,8 @@ sys.exit(1 if hits else 0)
 Cell outputs can leak API key fragments or transient data. Always clear before committing:
 
 ```powershell
-uv run --project notebooks jupyter nbconvert --clear-output --inplace notebooks\*.ipynb
+Get-ChildItem notebooks -Filter *.ipynb -Recurse | Where-Object { $_.FullName -notmatch '\\\.venv\\' } |
+    ForEach-Object { uv run --project notebooks jupyter nbconvert --clear-output --inplace $_.FullName }
 ```
 
 ## Pre-class checklist

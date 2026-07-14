@@ -8,6 +8,8 @@ Teaching and reference material for the **Claude Architect Foundations** 4-hour 
 
 **The class is taught from the five live-teaching Jupyter notebooks in `./notebooks/`.** Each notebook IS its segment - markdown cells carry the concepts, code cells carry the demos. A sixth **self-study deep-dive notebook** (Segment 2.5) ships alongside for cohort homework and Q&A overflow but is not on the 4-hour clock. A seventh **standalone exam-mastery reference** (`cca-f-exam-mastery.ipynb`) maps 1:1 to all five domains and all 30 task statements; it is off-clock post-class study, not live-taught. The reference scaffold .md files live in `./docs/`.
 
+**As of the 2026-07-14 unification, `notebooks/` is the single course tree - 23 notebooks, one venv, one kernel.** It nests two more self-study suites as subdirectories: `notebooks/00-prerequisites/` (the Messages API on-ramp, was `examples/messages_api/`) and `notebooks/06-managed-agents/` (the Managed Agents counterpart, was `examples/agents_api/`). Numeric prefixes place them before and after the five live segments in a plain file listing, so the sequence is readable from the directory alone, not just from prose. `examples/` now holds only `mcp_cli/`, a genuinely separate vendored app with its own uv project.
+
 The repo ships these artifacts:
 
 - `notebooks/segment-0-pre-flight.ipynb` - top-of-class environment verification (5 min, optional)
@@ -26,7 +28,7 @@ The repo ships these artifacts:
 - `docs/PRACTICE-QUESTIONS.md` - 60-question cohort take-home. **Hand-maintained.** Question stems are community-sourced; the answer explanations are repo-authored, with per-distractor rationale and Anthropic-doc citations grounded via Context7.
 - `docs/INSTRUCTOR-SETUP.md`, `docs/EXAM-STUDY-PATH.md`, `docs/COOKBOOK-INDEX.md`, `docs/scenario-cicd-integration.md` - supporting reference docs (instructor setup, study-path map, cookbook wire-up index, CI/CD scenario walkthrough)
 - `docs/EMERGENCY-CARD.md` - one-page live-class recovery card. What to run when a sidecar drops mid-segment.
-- `scripts/preflight-class.ps1` - **read-only** go/no-go board, run before class. Checks tooling (`uv`, `node`, `npx`, `git`), secrets (both `.env` files plus `GITHUB_TOKEN`), both venvs, the `claude-architect` kernelspec's `argv[0]`, both MCP configs (they parse, and the demo-server name is in sync across them), that all seven notebooks parse, and the sidecar ports. Exit 0 means GO. It **changes nothing**, so it is safe to run repeatedly.
+- `scripts/preflight-class.ps1` - **read-only** go/no-go board, run before class. Checks tooling (`uv`, `node`, `npx`, `git`), secrets (both `.env` files plus `GITHUB_TOKEN`), both venvs, the `claude-architect` kernelspec's `argv[0]`, both MCP configs (they parse, and the demo-server name is in sync across them), that all 23 notebooks under `notebooks/` parse, and the sidecar ports. Exit 0 means GO. It **changes nothing**, so it is safe to run repeatedly.
 - `start-sidecar-group.ps1` (repo root) - brings up the three class-day sidecars, each in its own window: JupyterLab (8888), MCP Inspector (6274 web UI plus 6277 proxy), and the MCP CLI REPL. **Idempotent**: it skips any sidecar whose port is already held, so a re-run repairs gaps instead of stacking duplicates. Flags: `-Restart`, `-SkipPreflight`, `-NoMcpCli`, `-NoJupyter`.
 - `stop-sidecar-group.ps1` (repo root) - delegates to `scripts/stop-jupyter.ps1`, then frees 6274 and 6277. It deliberately does **not** stop the MCP CLI REPL: that process holds no port, so the only way to find it is pattern-matching `pwsh`, which risks closing the instructor's own terminal.
 - `practice-questions.json` - machine-readable practice-question source, hand-maintained (Segment 4 notebook samples 10 from this). Stays at repo root, not in docs/. Its explanations are the shorter originals; the enriched per-distractor rationale lives only in `docs/PRACTICE-QUESTIONS.md`, so the two diverge by design.
@@ -35,10 +37,10 @@ The repo ships these artifacts:
 - `.vscode/mcp.json` - VS Code / GitHub Copilot agent-mode MCP config. Sibling schema to `.mcp.json`, NOT the same file: VS Code keys servers under `servers` (Claude Code uses `mcpServers`), allows JSONC comments, and uses `${workspaceFolder}` / `${env:VAR}` / `${input:id}` variables. Carries the same `oreilly-cca-mcp` server. The two files must be kept in sync by hand. Note: this file is local-only (untracked), not committed; only `.vscode/settings.json` is in version control.
 - `hooks-example.py` - real PreToolUse / PostToolUse reference cited from Segment 1
 - `coordinator-subagent-sketch.py` - Domain 1 coordinator-subagent scaffold (renamed from the old `testing.md`)
-- `examples/mcp_cli/` - vendored reference MCP CLI app from Anthropic's Skilljar course (Segment 2 anchor; separate uv project with its own `pyproject.toml`, `uv.lock`, and `.python-version` pinning 3.13). Attribution in `examples/mcp_cli/NOTICE.md`.
-- `examples/messages_api/` - ten Messages API primer notebooks (`001_requests` through `005_controlling_output` plus three `_exercise` variants, `first_request.ipynb`, and `multi_turn_conversation.ipynb`), adapted from [jaozc/building-with-the-claude-api](https://github.com/jaozc/building-with-the-claude-api/tree/main). Three portability fixes vs. the upstream source: the install cell shells out to `uv pip install --python sys.executable` instead of `%pip` (uv venvs ship without pip); `model = "claude-haiku-4-5"` per repo model policy; and the streaming/controlled-output demo prompts are Azure-first (Event Grid, Azure CLI). They read `examples/.env` via `python-dotenv` and request the `claude-architect` kernel (see below). Attribution lives in each notebook's first cell and in `examples/README.md`.
-- `examples/agents_api/` - managed-agents notebooks (Console asset surface). **Validated and in the teaching path**: all six are committed, all six are smoke-verified green against the live API, and all six archive the resources they create, so a run leaves nothing behind. The live notebooks' "Going further" appendices link them. Coordinate before large structural edits; small fixes are fine.
-- `claude-architect` **Jupyter kernel** - a user-scoped kernelspec whose `argv[0]` is the absolute path to `notebooks/.venv/Scripts/python.exe`, so it always lands in the writable uv venv regardless of PATH. The `examples/messages_api/` notebooks stamp `kernelspec.name = "claude-architect"` so the correct kernel auto-selects on open. Register on a fresh clone with `uv run --project notebooks python -m ipykernel install --user --name claude-architect --display-name "Claude Architect (notebooks/.venv)"`. The trap it avoids: a bare `"python"` in `argv` resolves to whatever is first on PATH (on Tim's box, the non-writable machine-wide `C:\Python314`), which makes the uv install cell fail with an Access-denied `os error 5`.
+- `examples/mcp_cli/` - vendored reference MCP CLI app from Anthropic's Skilljar course (Segment 2 anchor; separate uv project with its own `pyproject.toml`, `uv.lock`, and `.python-version` pinning 3.13). Attribution in `examples/mcp_cli/NOTICE.md`. `examples/` holds only this now - see below.
+- `notebooks/00-prerequisites/` - ten Messages API primer notebooks (`001_requests` through `005_controlling_output` plus three `_exercise` variants, `first_request.ipynb`, and `multi_turn_conversation.ipynb`), adapted from [jaozc/building-with-the-claude-api](https://github.com/jaozc/building-with-the-claude-api/tree/main). Three portability fixes vs. the upstream source: the install cell shells out to `uv pip install --python sys.executable` instead of `%pip` (uv venvs ship without pip); `model = "claude-haiku-4-5"` per repo model policy; and the streaming/controlled-output demo prompts are Azure-first (Event Grid, Azure CLI). They read `notebooks/.env` via `python-dotenv` and stamp the `claude-architect` kernel (see below). Attribution lives in each notebook's first cell and in `notebooks/00-prerequisites/README.md`. Moved here from `examples/messages_api/` in the 2026-07-14 unification; filenames unchanged.
+- `notebooks/06-managed-agents/` - managed-agents notebooks (Console asset surface). **Validated and in the teaching path**: all six are committed, all six are smoke-verified green against the live API, and all six archive the resources they create, so a run leaves nothing behind. The live notebooks' "Going further" appendices link them. Coordinate before large structural edits; small fixes are fine. Moved here from `examples/agents_api/` in the 2026-07-14 unification; filenames unchanged.
+- `claude-architect` **Jupyter kernel** - a user-scoped kernelspec whose `argv[0]` is the absolute path to `notebooks/.venv/Scripts/python.exe`, so it always lands in the writable uv venv regardless of PATH. **All 23 notebooks under `notebooks/` stamp `kernelspec.name = "claude-architect"`** so the correct kernel auto-selects on open - this was inconsistent before the 2026-07-14 unification (3 notebooks stamped generic `python3` by mistake, and the 7 root segment notebooks used `python3` throughout); now it's uniform. Register on a fresh clone with `uv run --project notebooks python -m ipykernel install --user --name claude-architect --display-name "Claude Architect (notebooks/.venv)"`. The trap it avoids: a bare `"python"` in `argv` resolves to whatever is first on PATH (on Tim's box, the non-writable machine-wide `C:\Python314`), which makes the uv install cell fail with an Access-denied `os error 5`.
 - `claude-cookbooks-main/` - vendored copy of Anthropic's official Claude Cookbooks (MIT, Copyright (c) 2023 Anthropic). Attribution in `claude-cookbooks-main/NOTICE.md`.
 - `slides/warner-claude-architect-july-2026.pptx` - course deck for the July 2026 delivery (89 slides). **Hand-authored**, not emitted by `scripts/build-deck.py` (that script generates a smaller scaffold cut and would overwrite the shipped file). No PDF is committed; export fresh from the `.pptx` if a cohort needs one.
 - `images/social-preview.png` - the GitHub repo social-preview asset (1280 x 640, <1 MB), uploaded via Settings -> Social preview. Regenerate via the prompt + processing pipeline documented in `images/social-preview-prompt.md`. Do NOT overwrite `images/cover.png` (that's the README hero, a different surface).
@@ -146,7 +148,7 @@ uv run --project notebooks jupyter nbconvert --to notebook --execute notebooks/s
 
 Then read the cell's output and confirm it matches what the printed assertion claims. **A passing exit code is not enough** - `nbconvert` exits 0 as long as no cell raised, even if the demo's printed numbers contradict the surrounding markdown (this is exactly what happened with the segment-2 cache demo: the cell ran clean but produced `cache_read=0` when the prose promised a cache hit).
 
-Smoke artifacts are gitignored - they are transient by design. `.gitignore` covers three trees: `notebooks/_smoke-*.ipynb`, `claude-cookbooks-main/**/_smoke-*.ipynb`, and `examples/**/_smoke-*.ipynb`.
+Smoke artifacts are gitignored - they are transient by design. `.gitignore` covers two trees: `notebooks/**/_smoke-*.ipynb` (recursive - reaches `00-prerequisites/` and `06-managed-agents/` too) and `claude-cookbooks-main/**/_smoke-*.ipynb`.
 
 Rule of thumb: if the markdown above a cell makes a concrete claim ("the second call reads from cache", "stop_reason flips to end_turn"), the cell must be smoke-verified. Voice-lint and `python scripts/build-notebooks.py` confirm structure; only a live API run confirms behavior.
 
@@ -173,7 +175,7 @@ The five live notebooks were substantially reworked. These rules govern every fu
 - **Markdown cells in a live-taught notebook are cue cards, not essays.** Tim speaks the elaboration; the cell gives him the skeleton to speak from. The four live notebooks were cut from **8,145 to 5,645 markdown words** (about 30%, roughly 19 minutes of read-aloud time recovered at ~130 wpm). The symptoms of bloat: any markdown cell over ~120 words, two or more markdown cells back-to-back with no code between them, and enumerable content written as paragraphs instead of tables.
 - **One idea per code cell.** Segment 1's coordinator-subagent demo used to be a **191-line single cell** carrying two near-identical subagent functions. It is now one parameterized `run_subagent(role, task)` driven by a role table, split across three runnable cells (61, 37, and 77 lines). **No cell exceeds 80 lines.**
 - **The teaching ladder must have no missing rungs. Show the primitive bare before automating it.** Segment 1 used to jump from a bare `messages.create()` with no tools straight to a 76-line cell carrying the agentic loop, three `stop_reason` branches, a dispatcher, and the `tool_result` contract. **Every `tools=` call in the notebook was already inside a `for` loop.** A new cell now sits between them: **one tool call, `tools=` attached, no loop**, printing the `stop_reason` flip from `end_turn` to `tool_use` and the raw `tool_use` block. The audience includes GenAI specialists who are not Python developers, so an unexplained loop hides the primitive it is looping over.
-- **Every live notebook ends with a "Going further" appendix** linking the repo's teaching assets (cookbooks, `examples/`, the domain scaffolds). Repo-internal links went from 27 to **72**, and all 72 are verified to resolve. Verify any link you add.
+- **Every live notebook ends with a "Going further" appendix** linking the repo's teaching assets (cookbooks, `00-prerequisites/`, `06-managed-agents/`, the domain scaffolds). Repo-internal links went from 27 to **72**, and all 72 are verified to resolve. Verify any link you add. (Paths simplified in the 2026-07-14 unification: these targets are now siblings inside `notebooks/`, not cousins reached via `../examples/`.)
 
 ## Cookbook wire-up status (the 2026-05-21 sprint)
 
@@ -229,7 +231,7 @@ Of the 16 cookbooks the course cites from `claude-cookbooks-main/`, the 8 heavy-
 ls COURSE-FLOW.md CLAUDE.md practice-questions.json \
    docs/PRE-CLASS-CHECKLIST.md docs/domain-*.md docs/CERT-PROGRAM-BRIEFING.md docs/PRACTICE-QUESTIONS.md
 
-# Verify all seven teaching notebooks present (five live + one self-study deep dive + one exam-mastery reference)
+# Verify the seven root teaching notebooks are present (five live + one self-study deep dive + one exam-mastery reference)
 ls notebooks/segment-0-pre-flight.ipynb \
    notebooks/segment-1-customer-support-agent.ipynb \
    notebooks/segment-2-tool-design-and-mcp.ipynb \
@@ -238,14 +240,17 @@ ls notebooks/segment-0-pre-flight.ipynb \
    notebooks/segment-4-cca-f-capstone.ipynb \
    notebooks/cca-f-exam-mastery.ipynb
 
+# Verify the full 23-notebook tree is present (7 root + 10 in 00-prerequisites/ + 6 in 06-managed-agents/)
+(Get-ChildItem notebooks -Filter *.ipynb -Recurse | Where-Object { $_.FullName -notmatch '\.venv' }).Count
+
 # Voice lint sweep on Tim-authored files (must return 0 matches).
 # docs/PRACTICE-QUESTIONS.md is community-sourced and excluded; its disclaimer header covers voice drift.
 grep -P "—|\bAWS\b" COURSE-FLOW.md CLAUDE.md docs/PRE-CLASS-CHECKLIST.md docs/CERT-PROGRAM-BRIEFING.md docs/domain-*.md
 
-# Voice lint sweep on notebook markdown cells (must return 0 matches)
+# Voice lint sweep on notebook markdown cells, full tree (must return 0 matches)
 python -c "import json, re, pathlib, sys; hits=0; \
-[print(f'{p.name} cell {i}: {m.group(0)!r}') or (hits := hits + 1) \
- for p in pathlib.Path('notebooks').glob('*.ipynb') \
+[print(f'{p} cell {i}: {m.group(0)!r}') or (hits := hits + 1) \
+ for p in pathlib.Path('notebooks').rglob('*.ipynb') if '.venv' not in p.parts \
  for i, c in enumerate(json.loads(p.read_text(encoding='utf-8'))['cells']) \
  if c['cell_type'] == 'markdown' \
  for m in re.finditer(r'—|\bAWS\b', ''.join(c['source']))]; sys.exit(1 if hits else 0)"
@@ -262,7 +267,9 @@ python -c "import json; print(len(json.load(open('practice-questions.json', enco
 # Rebuild notebooks from source after editing scripts/_notebooks/*.py
 python scripts/build-notebooks.py
 
-# Smoke test all seven notebooks against the API (budget ~$1)
+# Smoke test the seven root notebooks against the API (budget ~$1).
+# notebooks/00-prerequisites/ and notebooks/06-managed-agents/ are verified
+# by hand against the live API rather than in this sweep - see their READMEs.
 uv run --project notebooks jupyter nbconvert --to notebook --execute notebooks/segment-0-pre-flight.ipynb --output _smoke-0.ipynb
 uv run --project notebooks jupyter nbconvert --to notebook --execute notebooks/segment-1-customer-support-agent.ipynb --output _smoke-1.ipynb
 uv run --project notebooks jupyter nbconvert --to notebook --execute notebooks/segment-2-tool-design-and-mcp.ipynb --output _smoke-2.ipynb

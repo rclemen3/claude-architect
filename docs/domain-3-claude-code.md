@@ -106,7 +106,7 @@ See **COURSE-FLOW.md Segment 2** for the live walkthrough, taught from [`segment
 
 [`segment-2-5-control-surfaces.ipynb`](../notebooks/segment-2-5-control-surfaces.ipynb) draws the line this domain depends on: which tools come from Anthropic's servers, which come from your MCP servers, and which belong to the Claude Code harness itself and therefore can't be reached from the API. It also walks the live **Claude Console asset surface** (memory stores, vaults, agents, sessions), where the vault is the Domain 3 answer to keeping secrets out of source, notebooks included.
 
-Domain 3 is CLI and configuration, so the [`examples/agents_api/`](../examples/agents_api/) notebooks deliberately don't fake it. The one honest bridge they draw: an agent's `system` prompt is a versioned artifact, exactly like CLAUDE.md.
+Domain 3 is CLI and configuration, so the [`notebooks/06-managed-agents/`](../notebooks/06-managed-agents/) notebooks deliberately don't fake it. The one honest bridge they draw: an agent's `system` prompt is a versioned artifact, exactly like CLAUDE.md.
 
 ### Task-statement coverage
 

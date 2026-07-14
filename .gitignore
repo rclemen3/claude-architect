@@ -86,19 +86,16 @@ target/
 .ipynb_checkpoints
 
 # Smoke-test artifacts from `jupyter nbconvert --execute ... --output _smoke-N.ipynb`.
-# These are throwaway by design and pollute `git status` otherwise.
-notebooks/_smoke-*.ipynb
+# These are throwaway by design and pollute `git status` otherwise. Recursive
+# glob covers notebooks/ root plus the nested 00-prerequisites/ and
+# 06-managed-agents/ suites (unified into notebooks/ on 2026-07-14).
+notebooks/**/_smoke-*.ipynb
 
 # Cookbook smoke artifacts from `scripts/smoke-cookbooks.ps1`. Same pattern,
 # different directory. The vendored cookbook tree at claude-cookbooks-main/
 # stays byte-for-byte identical to Anthropic's upstream; smokes write to
 # sibling _smoke-*.ipynb files that never get committed.
 claude-cookbooks-main/**/_smoke-*.ipynb
-
-# Example-suite smoke artifacts. The messages_api/ and agents_api/ notebooks are
-# now linked from the teaching notebooks' "Going further" appendices, so learners
-# and instructors will smoke them too. Same throwaway pattern, third directory.
-examples/**/_smoke-*.ipynb
 
 # One-shot live-API spike scripts written during course-prep recon.
 # Throwaway; not part of the courseware.
@@ -247,4 +244,7 @@ ENHANCEMENTS.md
 # Claude Code personal project settings (per-machine overrides, never committed).
 # .claude/settings.json IS committed for team-wide config; .local.json is yours alone.
 .claude/settings.local.json
+
+# Claude Code agent-memory scratch (per-machine, accumulates freely, never committed).
+.claude/agent-memory/
 slides/~$warner-claude-architect-july-2026.pptx

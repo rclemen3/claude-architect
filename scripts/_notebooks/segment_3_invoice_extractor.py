@@ -781,8 +781,8 @@ Everything below is optional. Pick the group that matches what you want to get b
 
 - [`../claude-cookbooks-main/tool_use/extracting_structured_json.ipynb`](../claude-cookbooks-main/tool_use/extracting_structured_json.ipynb) - Anthropic's own take on the forced-tool-call extraction pattern.
 - [`../claude-cookbooks-main/tool_use/tool_use_with_pydantic.ipynb`](../claude-cookbooks-main/tool_use/tool_use_with_pydantic.ipynb) - Pydantic as the schema authority, which is exactly what we did here.
-- [`../examples/messages_api/005_controlling_output.ipynb`](../examples/messages_api/005_controlling_output.ipynb) - output-shape control at the raw Messages API level, without tools in the way.
-- [`../examples/messages_api/002_system_prompt.ipynb`](../examples/messages_api/002_system_prompt.ipynb) - the system prompt treated as a control surface rather than a greeting.
+- [`00-prerequisites/005_controlling_output.ipynb`](00-prerequisites/005_controlling_output.ipynb) - output-shape control at the raw Messages API level, without tools in the way.
+- [`00-prerequisites/002_system_prompt.ipynb`](00-prerequisites/002_system_prompt.ipynb) - the system prompt treated as a control surface rather than a greeting.
 
 **Context management**
 
@@ -792,8 +792,8 @@ Everything below is optional. Pick the group that matches what you want to get b
 
 **The managed-agents counterpart**
 
-- [`../examples/agents_api/04_structured_output_and_validation.ipynb`](../examples/agents_api/04_structured_output_and_validation.ipynb) - the same structured-output problem, solved inside a managed agent.
-- [`../examples/agents_api/05_context_and_escalation.ipynb`](../examples/agents_api/05_context_and_escalation.ipynb) - context management and escalation triage on the managed-agents surface.
+- [`06-managed-agents/04_structured_output_and_validation.ipynb`](06-managed-agents/04_structured_output_and_validation.ipynb) - the same structured-output problem, solved inside a managed agent.
+- [`06-managed-agents/05_context_and_escalation.ipynb`](06-managed-agents/05_context_and_escalation.ipynb) - context management and escalation triage on the managed-agents surface.
 
 **Where to go next**
 

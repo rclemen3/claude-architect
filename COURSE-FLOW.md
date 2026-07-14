@@ -464,8 +464,8 @@ Every live notebook closes with a **"Going further" appendix** that links these.
 1. **This week:** wire one of today's agents into a real production workflow. Don't let the demo code sit unused in a notebook.
 2. **Next:** read the 5 domain reference files in this repo for deeper dives on each area.
 3. **The strongest study asset in the repo:** [`./notebooks/cca-f-exam-mastery.ipynb`](./notebooks/cca-f-exam-mastery.ipynb). Twenty cells, zero errors, and it self-audits **30 of 30 CCA-F task statements** (D1 7/7, D2 5/5, D3 6/6, D4 6/6, D5 6/6). It **creates no billable resources**, so there's nothing to tear down afterward. Anyone serious about the exam runs this one.
-4. **If the Messages API is still new to you:** [`./examples/messages_api/`](./examples/messages_api/) is the on-ramp. Ten primer notebooks, all smoke-verified green.
-5. **The counterpart, where Anthropic hosts the loop:** [`./examples/agents_api/`](./examples/agents_api/). Six Managed Agents notebooks, all six smoke-verified green, and all six archive their own resources when they finish.
+4. **If the Messages API is still new to you:** [`./notebooks/00-prerequisites/`](./notebooks/00-prerequisites/) is the on-ramp. Ten primer notebooks, all smoke-verified green.
+5. **The counterpart, where Anthropic hosts the loop:** [`./notebooks/06-managed-agents/`](./notebooks/06-managed-agents/). Six Managed Agents notebooks, all six smoke-verified green, and all six archive their own resources when they finish.
 6. **Toward the exam:** work through [`./docs/CERT-PROGRAM-BRIEFING.md`](./docs/CERT-PROGRAM-BRIEFING.md), take the Anthropic Practice Exam (target >900/1000), then schedule. Remember it's one attempt only.
 7. **Calibration practice:** use [`./docs/PRACTICE-QUESTIONS.md`](./docs/PRACTICE-QUESTIONS.md) (community-sourced, calibration only) to self-assess between Anthropic Practice Exam attempts.
 

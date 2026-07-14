@@ -274,13 +274,13 @@ Two validated notebook suites ship in [`../examples/`](../examples/). You won't 
 
 | Suite | Count | What it's for |
 |---|---|---|
-| [`../examples/messages_api/`](../examples/messages_api/) | 10 notebooks | The **on-ramp**. Messages API primers for anyone who needs the fundamentals before the agentic material lands. All smoke-verified green. |
-| [`../examples/agents_api/`](../examples/agents_api/) | 6 notebooks | The **"Anthropic hosts the loop"** counterpart. Managed Agents. All six smoke-verified green, and all six archive their own resources when they finish, so a cohort member can't leave a bill running. |
+| [`../notebooks/00-prerequisites/`](../notebooks/00-prerequisites/) | 10 notebooks | The **on-ramp**. Messages API primers for anyone who needs the fundamentals before the agentic material lands. All smoke-verified green. |
+| [`../notebooks/06-managed-agents/`](../notebooks/06-managed-agents/) | 6 notebooks | The **"Anthropic hosts the loop"** counterpart. Managed Agents. All six smoke-verified green, and all six archive their own resources when they finish, so a cohort member can't leave a bill running. |
 
 Verify both are present:
 
 ```powershell
-@('examples/messages_api','examples/agents_api') |
+@('notebooks/00-prerequisites','notebooks/06-managed-agents') |
   ForEach-Object { "$_ : $((Get-ChildItem "C:/github/claude-architect/$_" -Filter *.ipynb).Count) notebooks" }
 ```
 

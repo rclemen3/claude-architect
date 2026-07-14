@@ -47,14 +47,14 @@ See **COURSE-FLOW.md Segment 1** for the live build, which is taught from [`segm
 
 ### Before the loop: the Messages API primitive
 
-If the raw `messages.create()` call still feels like magic, start at [`examples/messages_api/`](../examples/messages_api/). Ten short notebooks build the primitive the agentic loop wraps: [`001_requests.ipynb`](../examples/messages_api/001_requests.ipynb) is a single round trip, [`multi_turn_conversation.ipynb`](../examples/messages_api/multi_turn_conversation.ipynb) is the same call with an accumulating `messages` list, and that accumulation **is** the loop once you branch on `stop_reason`. Everything Domain 1 teaches sits one layer above these files.
+If the raw `messages.create()` call still feels like magic, start at [`notebooks/00-prerequisites/`](../notebooks/00-prerequisites/). Ten short notebooks build the primitive the agentic loop wraps: [`001_requests.ipynb`](../notebooks/00-prerequisites/001_requests.ipynb) is a single round trip, [`multi_turn_conversation.ipynb`](../notebooks/00-prerequisites/multi_turn_conversation.ipynb) is the same call with an accumulating `messages` list, and that accumulation **is** the loop once you branch on `stop_reason`. Everything Domain 1 teaches sits one layer above these files.
 
 ### The other half of the loop: let Anthropic host it
 
-Everything above is the **hand-rolled** loop, where your code owns the while-loop and the `stop_reason` branch. The **Managed Agents API** hosts that same loop server-side, and two notebooks in [`examples/agents_api/`](../examples/agents_api/) are the Domain 1 counterparts:
+Everything above is the **hand-rolled** loop, where your code owns the while-loop and the `stop_reason` branch. The **Managed Agents API** hosts that same loop server-side, and two notebooks in [`notebooks/06-managed-agents/`](../notebooks/06-managed-agents/) are the Domain 1 counterparts:
 
-- [`01_agentic_loop_and_sessions.ipynb`](../examples/agents_api/01_agentic_loop_and_sessions.ipynb) - the create, send, stream, idle, teardown spine, plus server-side **session** memory across turns. Compare its idle event to the `stop_reason` branch you write by hand.
-- [`02_coordinator_and_subagents.ipynb`](../examples/agents_api/02_coordinator_and_subagents.ipynb) - a coordinator with `multiagent` config delegating to specialists, which is the same isolated-context orchestration this domain teaches, minus the plumbing.
+- [`01_agentic_loop_and_sessions.ipynb`](../notebooks/06-managed-agents/01_agentic_loop_and_sessions.ipynb) - the create, send, stream, idle, teardown spine, plus server-side **session** memory across turns. Compare its idle event to the `stop_reason` branch you write by hand.
+- [`02_coordinator_and_subagents.ipynb`](../notebooks/06-managed-agents/02_coordinator_and_subagents.ipynb) - a coordinator with `multiagent` config delegating to specialists, which is the same isolated-context orchestration this domain teaches, minus the plumbing.
 
 Both notebooks archive their resources in a teardown cell. A live session is a billable runtime, so run that cell.
 

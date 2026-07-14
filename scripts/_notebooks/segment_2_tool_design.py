@@ -878,7 +878,7 @@ Segment 2 carries **Domains 2 and 3**, the heaviest pairing on the exam at 38% o
 
 ### The managed-agents counterpart
 
-- [`../examples/agents_api/03_tools_and_structured_errors.ipynb`](../examples/agents_api/03_tools_and_structured_errors.ipynb) - the same tool design and structured-error contract, run inside Anthropic's hosted agent loop instead of your own.
+- [`06-managed-agents/03_tools_and_structured_errors.ipynb`](06-managed-agents/03_tools_and_structured_errors.ipynb) - the same tool design and structured-error contract, run inside Anthropic's hosted agent loop instead of your own.
 
 ### Cookbook anchors (Anthropic official)
 

@@ -100,7 +100,7 @@ The two load-bearing Domain 5 concepts (case-facts pinning + tool-output pruning
 
 ### Escalation, running
 
-[`examples/agents_api/05_context_and_escalation.ipynb`](../examples/agents_api/05_context_and_escalation.ipynb) is the Domain 5 counterpart on the managed-agents surface. It runs the exact rule this page argues for, routing on **problem shape and not on sentiment**, alongside context-window discipline. If the sentiment-versus-complexity distinction still reads as an opinion rather than a mechanism, run that notebook and watch it decide.
+[`notebooks/06-managed-agents/05_context_and_escalation.ipynb`](../notebooks/06-managed-agents/05_context_and_escalation.ipynb) is the Domain 5 counterpart on the managed-agents surface. It runs the exact rule this page argues for, routing on **problem shape and not on sentiment**, alongside context-window discipline. If the sentiment-versus-complexity distinction still reads as an opinion rather than a mechanism, run that notebook and watch it decide.
 
 ### Context that survives a restart
 

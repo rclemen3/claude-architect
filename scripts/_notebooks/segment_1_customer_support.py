@@ -111,7 +111,7 @@ By the end of this segment you will be able to:
 _prereq_ramp_md = """\
 ## New to the Messages API?
 
-This segment assumes you've made a Claude API call before. If you haven't, start with [`../examples/messages_api/001_requests.ipynb`](../examples/messages_api/001_requests.ipynb) and work forward. The full ramp is in the **Going further** appendix at the bottom of this notebook.
+This segment assumes you've made a Claude API call before. If you haven't, start with [`00-prerequisites/001_requests.ipynb`](00-prerequisites/001_requests.ipynb) and work forward. The full ramp is in the **Going further** appendix at the bottom of this notebook.
 """
 
 _warm_up_md = """\
@@ -1037,14 +1037,14 @@ Everything below is optional and self-paced. Pick the group that matches where y
 
 Work these in order. They cover the primitive this whole segment is built on, one idea per notebook.
 
-- [`../examples/messages_api/001_requests.ipynb`](../examples/messages_api/001_requests.ipynb) - the bare request, no SDK sugar, so you see the wire format.
-- [`../examples/messages_api/002_system_prompt.ipynb`](../examples/messages_api/002_system_prompt.ipynb) - where the system prompt goes and what it changes.
-- [`../examples/messages_api/003_temperature.ipynb`](../examples/messages_api/003_temperature.ipynb) - what temperature actually does to output.
-- [`../examples/messages_api/004_streaming.ipynb`](../examples/messages_api/004_streaming.ipynb) - streaming responses token by token.
-- [`../examples/messages_api/005_controlling_output.ipynb`](../examples/messages_api/005_controlling_output.ipynb) - `max_tokens`, `stop_sequences`, and prefill as output controls.
-- [`../examples/messages_api/multi_turn_conversation.ipynb`](../examples/messages_api/multi_turn_conversation.ipynb) - history management, which is the loop's other half.
+- [`00-prerequisites/001_requests.ipynb`](00-prerequisites/001_requests.ipynb) - the bare request, no SDK sugar, so you see the wire format.
+- [`00-prerequisites/002_system_prompt.ipynb`](00-prerequisites/002_system_prompt.ipynb) - where the system prompt goes and what it changes.
+- [`00-prerequisites/003_temperature.ipynb`](00-prerequisites/003_temperature.ipynb) - what temperature actually does to output.
+- [`00-prerequisites/004_streaming.ipynb`](00-prerequisites/004_streaming.ipynb) - streaming responses token by token.
+- [`00-prerequisites/005_controlling_output.ipynb`](00-prerequisites/005_controlling_output.ipynb) - `max_tokens`, `stop_sequences`, and prefill as output controls.
+- [`00-prerequisites/multi_turn_conversation.ipynb`](00-prerequisites/multi_turn_conversation.ipynb) - history management, which is the loop's other half.
 
-Three of these ship an `_exercise` variant if you want to type it yourself: `001_requests_exercise.ipynb`, `002_system_prompt_exercise.ipynb`, `005_controlling_output_exercise.ipynb`. There's also a one-cell [`first_request.ipynb`](../examples/messages_api/first_request.ipynb) if you just want to prove your key works.
+Three of these ship an `_exercise` variant if you want to type it yourself: `001_requests_exercise.ipynb`, `002_system_prompt_exercise.ipynb`, `005_controlling_output_exercise.ipynb`. There's also a one-cell [`first_request.ipynb`](00-prerequisites/first_request.ipynb) if you just want to prove your key works.
 
 ### Deeper on this segment
 
@@ -1056,8 +1056,8 @@ Three of these ship an `_exercise` variant if you want to type it yourself: `001
 
 Same architecture, except **Anthropic hosts the loop**. You define the agent and the tools, and the platform runs the `stop_reason` state machine you hand-wrote above.
 
-- [`../examples/agents_api/01_agentic_loop_and_sessions.ipynb`](../examples/agents_api/01_agentic_loop_and_sessions.ipynb) - the managed version of this segment's loop, plus real sessions.
-- [`../examples/agents_api/02_coordinator_and_subagents.ipynb`](../examples/agents_api/02_coordinator_and_subagents.ipynb) - the managed version of the coordinator-subagent demo.
+- [`06-managed-agents/01_agentic_loop_and_sessions.ipynb`](06-managed-agents/01_agentic_loop_and_sessions.ipynb) - the managed version of this segment's loop, plus real sessions.
+- [`06-managed-agents/02_coordinator_and_subagents.ipynb`](06-managed-agents/02_coordinator_and_subagents.ipynb) - the managed version of the coordinator-subagent demo.
 
 ### Cookbook anchors (Anthropic official)
 

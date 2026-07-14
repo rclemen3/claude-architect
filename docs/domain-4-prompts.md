@@ -149,9 +149,9 @@ See **COURSE-FLOW.md Segment 3** for the live build (invoice extractor), taught 
 
 ### The control surfaces underneath
 
-Before forced tool use, there are plainer levers, and [`examples/messages_api/`](../examples/messages_api/) walks them one per notebook: [`002_system_prompt.ipynb`](../examples/messages_api/002_system_prompt.ipynb) treats the **system prompt as a control surface** rather than decoration, [`003_temperature.ipynb`](../examples/messages_api/003_temperature.ipynb) shows what the temperature dial does and doesn't buy you, and [`005_controlling_output.ipynb`](../examples/messages_api/005_controlling_output.ipynb) is output control in its simplest form. Each has an `_exercise` variant. Work these first if the Pydantic-plus-forced-tool pattern below feels like it arrived from nowhere.
+Before forced tool use, there are plainer levers, and [`notebooks/00-prerequisites/`](../notebooks/00-prerequisites/) walks them one per notebook: [`002_system_prompt.ipynb`](../notebooks/00-prerequisites/002_system_prompt.ipynb) treats the **system prompt as a control surface** rather than decoration, [`003_temperature.ipynb`](../notebooks/00-prerequisites/003_temperature.ipynb) shows what the temperature dial does and doesn't buy you, and [`005_controlling_output.ipynb`](../notebooks/00-prerequisites/005_controlling_output.ipynb) is output control in its simplest form. Each has an `_exercise` variant. Work these first if the Pydantic-plus-forced-tool pattern below feels like it arrived from nowhere.
 
-For the managed-agent version, [`examples/agents_api/04_structured_output_and_validation.ipynb`](../examples/agents_api/04_structured_output_and_validation.ipynb) pulls JSON out of an agent turn and runs the same validate-then-retry-once discipline, including the null-if-not-stated rule.
+For the managed-agent version, [`notebooks/06-managed-agents/04_structured_output_and_validation.ipynb`](../notebooks/06-managed-agents/04_structured_output_and_validation.ipynb) pulls JSON out of an agent turn and runs the same validate-then-retry-once discipline, including the null-if-not-stated rule.
 
 ### Task-statement coverage
 

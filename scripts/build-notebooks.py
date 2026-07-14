@@ -50,9 +50,9 @@ def _build_one(slug: str) -> Path:
     cells = BUILDERS[slug]()
     nb = new_notebook(metadata={
         "kernelspec": {
-            "display_name": "Python 3",
+            "display_name": "Claude Architect (notebooks/.venv)",
             "language": "python",
-            "name": "python3",
+            "name": "claude-architect",
         },
         "language_info": {"name": "python"},
     })

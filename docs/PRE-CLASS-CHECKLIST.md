@@ -186,10 +186,10 @@ Section 0's `preflight-class.ps1` already confirms that all seven notebooks pars
 
 - [ ] **Post-class example suites present**
   ```powershell
-  @('examples/messages_api','examples/agents_api') |
+  @('notebooks/00-prerequisites','notebooks/06-managed-agents') |
     ForEach-Object { "$_ : $((Get-ChildItem "C:/github/claude-architect/$_" -Filter *.ipynb).Count) notebooks" }
   ```
-  **Expect:** `examples/messages_api : 10 notebooks` and `examples/agents_api : 6 notebooks`. Both suites are smoke-verified green and are linked from the teaching notebooks' "Going further" appendices. The `messages_api` set is the API on-ramp; the `agents_api` set is the "Anthropic hosts the loop" counterpart, and all six of those archive their own resources when they finish.
+  **Expect:** `notebooks/00-prerequisites : 10 notebooks` and `notebooks/06-managed-agents : 6 notebooks`. Both suites are smoke-verified green and are linked from the teaching notebooks' "Going further" appendices. The `00-prerequisites` set is the API on-ramp; the `06-managed-agents` set is the "Anthropic hosts the loop" counterpart, and all six of those archive their own resources when they finish.
 
 - [ ] **Optional self-study reference: community practice-test HTML** (not required for class)
   ```powershell

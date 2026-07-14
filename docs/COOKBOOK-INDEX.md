@@ -42,7 +42,7 @@ Three of these cookbooks (`customer_service_agent`, `tool_use_with_pydantic`, `e
 |---|---|---|
 | `parallel_tools.ipynb` | Parallel tool calls, and turning them off | [`segment-2-5-control-surfaces.ipynb`](../notebooks/segment-2-5-control-surfaces.ipynb), the `disable_parallel_tool_use` section |
 | `automatic-context-compaction.ipynb` | Keeping a long session under the window | [`cca-f-exam-mastery.ipynb`](../notebooks/cca-f-exam-mastery.ipynb) Part 5 (TS5.1), plus [`segment-3-invoice-extractor.ipynb`](../notebooks/segment-3-invoice-extractor.ipynb) for case-facts pinning |
-| `01_The_chief_of_staff_agent.ipynb` | Coordinator delegating to specialists | [`examples/agents_api/02_coordinator_and_subagents.ipynb`](../examples/agents_api/02_coordinator_and_subagents.ipynb), or [`coordinator-subagent-sketch.py`](../coordinator-subagent-sketch.py) to read rather than run |
+| `01_The_chief_of_staff_agent.ipynb` | Coordinator delegating to specialists | [`notebooks/06-managed-agents/02_coordinator_and_subagents.ipynb`](../notebooks/06-managed-agents/02_coordinator_and_subagents.ipynb), or [`coordinator-subagent-sketch.py`](../coordinator-subagent-sketch.py) to read rather than run |
 
 ## Where the course's own notebooks fit
 
@@ -50,8 +50,8 @@ The cookbooks above are Anthropic's, vendored and authoritative. The notebooks b
 
 - **[`notebooks/cca-f-exam-mastery.ipynb`](../notebooks/cca-f-exam-mastery.ipynb)** - all 30 CCA-F task statements, one runnable demo each, 20 of 20 cells verified green, **no billable resources created**. The first thing to open when studying.
 - **[`notebooks/segment-2-5-control-surfaces.ipynb`](../notebooks/segment-2-5-control-surfaces.ipynb)** - the depth pass on `tool_choice`, `stop_reason`, `list_tools`, and the Claude Console asset surface.
-- **[`examples/messages_api/`](../examples/messages_api/)** - ten short notebooks on the raw Messages API. The on-ramp if the cookbooks assume more than you have.
-- **[`examples/agents_api/`](../examples/agents_api/)** - six notebooks on the Managed Agents API, where Anthropic hosts the loop. These make **live, billable, beta-gated** calls, and each one archives its resources in a teardown cell. Let it run.
+- **[`notebooks/00-prerequisites/`](../notebooks/00-prerequisites/)** - ten short notebooks on the raw Messages API. The on-ramp if the cookbooks assume more than you have.
+- **[`notebooks/06-managed-agents/`](../notebooks/06-managed-agents/)** - six notebooks on the Managed Agents API, where Anthropic hosts the loop. These make **live, billable, beta-gated** calls, and each one archives its resources in a teardown cell. Let it run.
 
 ## The `No module named pip` message
 

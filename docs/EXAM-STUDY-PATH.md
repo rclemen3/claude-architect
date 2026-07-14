@@ -36,18 +36,18 @@ Walk it once end to end. Then walk the parts your practice questions say you're 
 
 Neither of these is on the live clock, and both are smoke-verified green.
 
-**[`examples/messages_api/`](../examples/messages_api/) is the on-ramp.** Ten short notebooks on the raw Messages API: a single request, the system prompt as a control surface, temperature, streaming, and output control, with `_exercise` variants on three of them. If the agentic loop feels like magic rather than mechanism, this is why. The loop is just `messages.create()` in a while-loop with a `stop_reason` branch, and these notebooks build that primitive one idea at a time. Most relevant to **D1** (the primitive under the loop) and **D4** (`005_controlling_output` and `002_system_prompt` are output control, plainly).
+**[`notebooks/00-prerequisites/`](../notebooks/00-prerequisites/) is the on-ramp.** Ten short notebooks on the raw Messages API: a single request, the system prompt as a control surface, temperature, streaming, and output control, with `_exercise` variants on three of them. If the agentic loop feels like magic rather than mechanism, this is why. The loop is just `messages.create()` in a while-loop with a `stop_reason` branch, and these notebooks build that primitive one idea at a time. Most relevant to **D1** (the primitive under the loop) and **D4** (`005_controlling_output` and `002_system_prompt` are output control, plainly).
 
-**[`examples/agents_api/`](../examples/agents_api/) is the counterpart.** Six notebooks on the **Managed Agents API**, where Anthropic hosts the loop you otherwise hand-roll. Each is banded to a domain, and each ends by archiving its resources, which you should let it do.
+**[`notebooks/06-managed-agents/`](../notebooks/06-managed-agents/) is the counterpart.** Six notebooks on the **Managed Agents API**, where Anthropic hosts the loop you otherwise hand-roll. Each is banded to a domain, and each ends by archiving its resources, which you should let it do.
 
 | Notebook | Domain |
 |---|---|
-| [`01_agentic_loop_and_sessions.ipynb`](../examples/agents_api/01_agentic_loop_and_sessions.ipynb) | **D1** |
-| [`02_coordinator_and_subagents.ipynb`](../examples/agents_api/02_coordinator_and_subagents.ipynb) | **D1** |
-| [`03_tools_and_structured_errors.ipynb`](../examples/agents_api/03_tools_and_structured_errors.ipynb) | **D2**, with the D3 bridge |
-| [`04_structured_output_and_validation.ipynb`](../examples/agents_api/04_structured_output_and_validation.ipynb) | **D4** |
-| [`05_context_and_escalation.ipynb`](../examples/agents_api/05_context_and_escalation.ipynb) | **D5** |
-| [`06_cca_f_capstone.ipynb`](../examples/agents_api/06_cca_f_capstone.ipynb) | All domains |
+| [`01_agentic_loop_and_sessions.ipynb`](../notebooks/06-managed-agents/01_agentic_loop_and_sessions.ipynb) | **D1** |
+| [`02_coordinator_and_subagents.ipynb`](../notebooks/06-managed-agents/02_coordinator_and_subagents.ipynb) | **D1** |
+| [`03_tools_and_structured_errors.ipynb`](../notebooks/06-managed-agents/03_tools_and_structured_errors.ipynb) | **D2**, with the D3 bridge |
+| [`04_structured_output_and_validation.ipynb`](../notebooks/06-managed-agents/04_structured_output_and_validation.ipynb) | **D4** |
+| [`05_context_and_escalation.ipynb`](../notebooks/06-managed-agents/05_context_and_escalation.ipynb) | **D5** |
+| [`06_cca_f_capstone.ipynb`](../notebooks/06-managed-agents/06_cca_f_capstone.ipynb) | All domains |
 
 These notebooks make **live, billable, beta-gated** calls, so they're a different budget than exam-mastery. Read the contrast, though: seeing the same loop hosted for you is the fastest way to understand what your hand-rolled version is actually doing.
 
