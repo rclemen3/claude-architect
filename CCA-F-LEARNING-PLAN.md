@@ -2,7 +2,7 @@
 
 A self-paced path through **all study material in this repo**, divided by CCA-F exam domain, built for **5 days at up to 8 hours/day** (≈40 hours). A **7-day split** is in the appendix if you want a lighter daily load.
 
-**How to use this file:** work top to bottom. Tick each `[ ]` as you finish it - either run **`/study-done <topic>`** (the skill verifies the bar and ticks the box for you), or edit the file by hand. Every day ends with a **Day gate** - a short self-check that tells you whether to move on or re-walk. The final **Exam-readiness gate** is your go/no-go before booking the proctored attempt.
+**How to use this file:** work top to bottom. Tick each `[ ]` as you finish it - either run **`/study-done <topic>`** (the skill verifies the bar and ticks the box for you), or edit the file by hand. Every day ends with a **Day gate** - a short self-check that tells you whether to move on or re-walk. The final **Exam-readiness gate** is your go/no-go before booking the proctored attempt. If your timeline slips or opens up, run **`/replan <days>`** (for example `/replan 3d`) to re-fit the remaining unchecked work into the days you actually have.
 
 **What "done" means:** a box only flips when its [**Definition of Done**](docs/CCA-F-DEFINITION-OF-DONE.md) is met. The rule in one line: *a green cell is not done - being able to explain it is.* The [`/study-done`](.claude/skills/study-done/SKILL.md) skill enforces that rule (and quizzes you) before ticking; use `/study-done status` any time to see where you are.
 
