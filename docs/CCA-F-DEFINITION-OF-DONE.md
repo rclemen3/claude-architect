@@ -1,6 +1,6 @@
 # CCA-F Definition of Done
 
-This is **the rule** for [`CCA-F-LEARNING-PLAN.md`](../CCA-F-LEARNING-PLAN.md): what has to be true before a checkbox flips from `[ ]` to `[x]`. The [`/study-done`](../.claude/skills/study-done/SKILL.md) skill enforces it. Read it as the standard you hold yourself to even when ticking a box by hand.
+This is **the rule** for [`CCA-F-LEARNING-PLAN.md`](../CCA-F-LEARNING-PLAN.md): what has to be true before a checkbox flips from `[ ]` to `[x]`. The [`/check_prog`](../.claude/commands/check_prog.md) command enforces it. Read it as the standard you hold yourself to even when ticking a box by hand.
 
 ## The one principle everything else follows from
 

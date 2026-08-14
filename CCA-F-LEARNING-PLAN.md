@@ -2,9 +2,9 @@
 
 A self-paced path through **all study material in this repo**, divided by CCA-F exam domain, built for **5 days at up to 8 hours/day** (≈40 hours). A **7-day split** is in the appendix if you want a lighter daily load.
 
-**How to use this file:** work top to bottom. Tick each `[ ]` as you finish it - either run **`/study-done <topic>`** (the skill verifies the bar and ticks the box for you), or edit the file by hand. Every day ends with a **Day gate** - a short self-check that tells you whether to move on or re-walk. The final **Exam-readiness gate** is your go/no-go before booking the proctored attempt. If your timeline slips or opens up, run **`/replan <days>`** (for example `/replan 3d`) to re-fit the remaining unchecked work into the days you actually have.
+**How to use this file:** work top to bottom. Tick each `[ ]` as you finish it - either run **`/check_prog <topic>`** (it verifies the bar, quizzes you, and ticks the box for you), or edit the file by hand. Every day ends with a **Day gate** - a short self-check that tells you whether to move on or re-walk. The final **Exam-readiness gate** is your go/no-go before booking the proctored attempt. If your timeline slips or opens up, run **`/replan <days>`** (for example `/replan 3d`) to re-fit the remaining unchecked work into the days you actually have.
 
-**What "done" means:** a box only flips when its [**Definition of Done**](docs/CCA-F-DEFINITION-OF-DONE.md) is met. The rule in one line: *a green cell is not done - being able to explain it is.* The [`/study-done`](.claude/skills/study-done/SKILL.md) skill enforces that rule (and quizzes you) before ticking; use `/study-done status` any time to see where you are.
+**What "done" means:** a box only flips when its [**Definition of Done**](docs/CCA-F-DEFINITION-OF-DONE.md) is met. The rule in one line: *a green cell is not done - being able to explain it is.* The [`/check_prog`](.claude/commands/check_prog.md) command enforces that rule (and quizzes you) before ticking; run it with no argument any time for a read-only progress report and an optional checkpoint quiz.
 
 > **Ground rule from the repo:** this material is **calibration, not a braindump**. Before you schedule the real exam, take **Anthropic's official Practice Exam** (linked from your CCA-F Skilljar page). See [`docs/CERT-PROGRAM-BRIEFING.md`](docs/CERT-PROGRAM-BRIEFING.md) for mechanics: **60 questions, 120 minutes, 720 to pass, one attempt**.
 
@@ -16,11 +16,11 @@ A self-paced path through **all study material in this repo**, divided by CCA-F 
       `uv run --project notebooks jupyter lab notebooks/`
 - [x] Register the `claude-architect` kernel if this is a fresh clone:
       `uv run --project notebooks python -m ipykernel install --user --name claude-architect --display-name "Claude Architect (notebooks/.venv)"`
-- [ ] Confirm `notebooks/.env` carries `ANTHROPIC_API_KEY` (billable notebooks need it)
-- [ ] Read the orientation docs so you know the map before you climb it:
-  - [ ] [`docs/EXAM-STUDY-PATH.md`](docs/EXAM-STUDY-PATH.md) - how the repo maps to the exam
-  - [ ] [`docs/CERT-PROGRAM-BRIEFING.md`](docs/CERT-PROGRAM-BRIEFING.md) - exam mechanics + week-before punchlist
-  - [ ] [`COURSE-FLOW.md`](COURSE-FLOW.md) - the teaching arc (skim)
+- [x] Confirm `notebooks/.env` carries `ANTHROPIC_API_KEY` (billable notebooks need it)
+- [x] Read the orientation docs so you know the map before you climb it:
+  - [x] [`docs/EXAM-STUDY-PATH.md`](docs/EXAM-STUDY-PATH.md) - how the repo maps to the exam
+  - [x] [`docs/CERT-PROGRAM-BRIEFING.md`](docs/CERT-PROGRAM-BRIEFING.md) - exam mechanics + week-before punchlist
+  - [x] [`COURSE-FLOW.md`](COURSE-FLOW.md) - the teaching arc (skim)
 
 **Budget note:** the seven core notebooks make live API calls at roughly **$0.05 each**. The `06-managed-agents/` notebooks are **beta-gated and more expensive** - they create and then archive real resources. `cca-f-exam-mastery.ipynb` and the `00-prerequisites/` set are the cheapest to run.
 
@@ -46,18 +46,18 @@ A self-paced path through **all study material in this repo**, divided by CCA-F 
 
 ### Topic 1.1 - The Messages API primitive (≈2.5 hrs)
 The agentic loop is just `messages.create()` in a while-loop with a `stop_reason` branch. These build that one idea at a time.
-- [ ] `notebooks/00-prerequisites/first_request.ipynb`
-- [ ] `notebooks/00-prerequisites/001_requests.ipynb` (+ `_exercise`)
-- [ ] `notebooks/00-prerequisites/002_system_prompt.ipynb` (+ `_exercise`)
-- [ ] `notebooks/00-prerequisites/003_temperature.ipynb`
-- [ ] `notebooks/00-prerequisites/004_streaming.ipynb`
-- [ ] `notebooks/00-prerequisites/005_controlling_output.ipynb` (+ `_exercise`)
-- [ ] `notebooks/00-prerequisites/multi_turn_conversation.ipynb`
+- [x] `notebooks/00-prerequisites/first_request.ipynb`
+- [x] `notebooks/00-prerequisites/001_requests.ipynb` (+ `_exercise`)
+- [x] `notebooks/00-prerequisites/002_system_prompt.ipynb` (+ `_exercise`)
+- [x] `notebooks/00-prerequisites/003_temperature.ipynb`
+- [x] `notebooks/00-prerequisites/004_streaming.ipynb`
+- [x] `notebooks/00-prerequisites/005_controlling_output.ipynb` (+ `_exercise`)
+- [x] `notebooks/00-prerequisites/multi_turn_conversation.ipynb`
 
 ### Topic 1.2 - The agentic loop (≈2.5 hrs)
-- [ ] Run `notebooks/segment-0-pre-flight.ipynb` (SDK floor check, credentials)
-- [ ] Work `notebooks/segment-1-customer-support-agent.ipynb` end to end - watch `stop_reason` flip `end_turn` -> `tool_use`, the dispatcher, the `tool_result` contract
-- [ ] Read [`docs/domain-1-agentic.md`](docs/domain-1-agentic.md) (loop, coordinator-subagent, hooks, sessions, task decomposition)
+- [x] Run `notebooks/segment-0-pre-flight.ipynb` (SDK floor check, credentials)
+- [x] Work `notebooks/segment-1-customer-support-agent.ipynb` end to end - watch `stop_reason` flip `end_turn` -> `tool_use`, the dispatcher, the `tool_result` contract
+- [x] Read [`docs/domain-1-agentic.md`](docs/domain-1-agentic.md) (loop, coordinator-subagent, hooks, sessions, task decomposition)
 
 ### Topic 1.3 - D1 exam mapping (≈1.5 hrs)
 - [ ] Walk **Part 1** of `notebooks/cca-f-exam-mastery.ipynb` (TS1.1-TS1.7)
