@@ -1,13 +1,13 @@
 ---
 name: replan
-description: Re-fit the remaining CCA-F study work into a new number of days in CCA-F-LEARNING-PLAN.md. Invoke as /replan when the learner has fallen behind, gained time, or wants to compress or stretch the schedule. Takes a day count (e.g. /replan 3d), reads current progress, computes a target completion date, and rewrites a managed schedule block that redistributes only the unchecked work across the new timeframe in dependency order. Never ticks boxes - that is study-done's job.
+description: Re-fit the remaining CCA-F study work into a new number of days in CCA-F-LEARNING-PLAN.md. Invoke as /replan when the learner has fallen behind, gained time, or wants to compress or stretch the schedule. Takes a day count (e.g. /replan 3d), reads current progress, computes a target completion date, and rewrites a managed schedule block that redistributes only the unchecked work across the new timeframe in dependency order. Never ticks boxes - that is /check_prog's job.
 ---
 
 # replan
 
 Re-pace the study schedule in [`CCA-F-LEARNING-PLAN.md`](../../../CCA-F-LEARNING-PLAN.md) when the learner's real timeline no longer matches the authored **Day 1-5** plan. The plan is written for 5 days at up to 8 hours/day; life rarely cooperates. This skill takes the days the learner actually has left, looks at what they have **already completed**, and lays out a fresh day-by-day route through everything still unchecked.
 
-**Boundary that matters:** this skill **reschedules**, it does not grade. It never flips a `[ ]` to `[x]`. Marking work done - with the Definition of Done enforced - is [`/study-done`](../study-done/SKILL.md)'s job. Keep the two separate.
+**Boundary that matters:** this skill **reschedules**, it does not grade. It never flips a `[ ]` to `[x]`. Marking work done - with the Definition of Done enforced - is [`/check_prog`](../../commands/check_prog.md)'s job. Keep the two separate.
 
 ## Inputs
 
@@ -53,7 +53,7 @@ Do **not** place these into the schedule as movable work - they are consequences
    - **Weight the front.** When something has to give, protect the heaviest unlearned domains first (D1 27%, then D3/D4 at 20%, D2 18%, D5 15%).
    - Keep the coverage-complete pass, the capstone, and the 60-question bank in the **final** day or two.
 
-7. **Write the managed block.** Insert or replace a single block delimited by the markers below, placed **after the intro/ground-rule section and before the first `## ` day section**. Re-running `/replan` replaces this block in place - it is idempotent by design. Never scatter schedule edits through the day sections; the checkboxes there stay untouched so `/study-done` keeps working against them.
+7. **Write the managed block.** Insert or replace a single block delimited by the markers below, placed **after the intro/ground-rule section and before the first `## ` day section**. Re-running `/replan` replaces this block in place - it is idempotent by design. Never scatter schedule edits through the day sections; the checkboxes there stay untouched so `/check_prog` keeps working against them.
 
    ```
    <!-- REPLAN:START -->
@@ -70,7 +70,7 @@ Do **not** place these into the schedule as movable work - they are consequences
    ### Replan Day 2 - <YYYY-MM-DD> (~h hrs)
    - ...
 
-   > This schedule reschedules only unchecked work. Tick items with `/study-done`; re-run `/replan` if your timeline shifts again.
+   > This schedule reschedules only unchecked work. Tick items with `/check_prog`; re-run `/replan` if your timeline shifts again.
    <!-- REPLAN:END -->
    ```
 
@@ -84,7 +84,7 @@ With no argument or `status`: change nothing. Read the plan, print `[x]`/`[ ]` o
 
 ## Boundaries
 
-- **Never tick or un-tick a box.** Scheduling is not grading. Route all completion through `/study-done`.
+- **Never tick or un-tick a box.** Scheduling is not grading. Route all completion through `/check_prog`.
 - **Touch only the managed block** between the `REPLAN` markers (plus, on first use, inserting that block). Leave the authored day sections, the achievement tracker, the readiness gate, the appendix, and the DoD alone.
 - **Do not invent estimates.** If a topic has no hours annotation and no header to inherit from, say so rather than fabricating a number.
 - **Do not lower the exam bar to fit the calendar.** If the days genuinely cannot hold the core work, say that honestly and recommend more days rather than quietly dropping load-bearing material.

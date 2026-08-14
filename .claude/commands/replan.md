@@ -11,4 +11,4 @@ The learner has `$ARGUMENTS` days left before their target completion date. Invo
 2. Resolve the target date from `$ARGUMENTS` (a day count like `3d`, a week count like `2w`, or an ISO date; empty means status mode).
 3. Redistribute only the **unchecked** remaining work across the new timeframe in dependency order, then write it into the managed `REPLAN` block in the plan.
 
-Do not tick any checkbox - completion is handled only by `/study-done`.
+Do not tick any checkbox - completion is handled only by `/check_prog`.
