@@ -98,6 +98,18 @@ This repo has no application layer. The architecture IS the teaching choreograph
 - **`private/claude-certified-architect-main/`** (gitignored) is a **separate community study repo** (note: name is close to this course package but the repos are distinct - `claude-certified-architect` is community-contributed, `claude-architect` is Tim's). Multi-language guides + practical_test HTMLs. **Not authoritative** because the exam isn't public yet. Use for context, not citation.
 - **`research/`** holds Anthropic-Confidential source material (CCA-F Exam Guide PDF + markdown conversions). See "What NOT to commit" below.
 
+## The self-study learning-plan subsystem (added 2026-08, commits `c44586f`..`3b81433`)
+
+Separate from the live-teaching materials, the repo carries a **self-paced study tracker** for a learner working through all the material toward the CCA-F exam. Three files plus two slash commands form one closed loop, and the ticking rules are strict:
+
+- **`CCA-F-LEARNING-PLAN.md`** (repo root) - the checklist. A day-by-day path (5-day default, 7-day appendix split) through every study artifact, grouped by exam domain, with `[ ]`/`[x]` boxes, per-day **Day gates**, and a final **Exam-readiness gate**. Contains a managed `REPLAN` block that `/replan` rewrites.
+- **`CCA-F-CHECKPOINT-LOG.md`** (repo root) - two layers in one file: a machine-readable **Checkpoint status** table (one row per topic: `Last checkpoint | Verdict | Plan ticked? | Notes`) that the commands read, plus dated **narrative entries** capturing each quiz, the answers, the verdict, and the correct framing.
+- **`docs/CCA-F-DEFINITION-OF-DONE.md`** - the bar a box must clear before it flips. One principle: **a green cell is not done - being able to explain it is.** A per-item-type table defines "done" (notebooks ran *and* output was read *and* the learner can restate the point; billable notebooks additionally require teardown/archive cells ran).
+- **`/check_prog`** (`.claude/commands/check_prog.md`) - **the only thing that ticks boxes.** It reports status, offers a calibration quiz, enforces the DoD, and on a `Pass` ticks the plan box, logs the checkpoint, and cascades ticks up to parent/domain/readiness rows whose own bar is now met. `Partial`/`Miss` tick nothing. Also handles `status` (read-only) and `undo <item>` (revert a tick + re-cascade).
+- **`/replan`** (`.claude/commands/replan.md`, backed by the `replan` skill) - re-fits only the **unchecked** remaining work into a new timeframe (`/replan 3d`, `2w`, or an ISO date) and rewrites the `REPLAN` block. It **never ticks a box** - grading belongs to `/check_prog` alone.
+
+**The load-bearing invariant when editing any of these:** completion flows one direction through `/check_prog` + the DoD; `/replan` only reschedules. Do not add a second ticking path, and do not tick a box in the plan by hand-editing on the learner's behalf without applying the DoD. These files obey the same voice rules as the rest of the repo.
+
 ## Required reading order before editing
 
 1. This file

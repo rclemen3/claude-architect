@@ -38,7 +38,14 @@ Print, changing nothing:
 
 On a yes, look up the matching row in the DoD table and check each criterion:
 - **Objective criteria** (cells ran, teardown/archive cells ran, sidecar bound its port): state them and ask the learner to confirm.
-- **Demonstrable criteria** (explain out loud, restate a concept, why each distractor fails, the Day gate questions): **quiz the learner** with 2 to 4 targeted questions drawn from that day's gate or the relevant task statements (TSx.y). Judge each answer honestly - a "mostly" is a `Partial`, not a `Pass`. Do not wave anything through.
+- **Demonstrable criteria** (explain out loud, restate a concept, why each distractor fails, the Day gate questions): **quiz the learner** with 2 to 4 targeted questions. Judge each answer honestly - a "mostly" is a `Partial`, not a `Pass`. Do not wave anything through.
+
+**Quiz style - write CCA-F exam questions, not repo-recall questions.** The target topic and its task statements (TSx.y) fix the **subject** a question probes, but the question itself must look like one the learner will meet on the real CCA-F exam, not a quiz about this repo:
+
+- **Test the domain concept generally, not the demo.** Ask what a control does, when to reach for it, and how it behaves in production - not "what did that notebook cell print" or "which file holds the MCP config." A learner who memorized this repo but does not understand the concept should fail; a learner who understands the concept but never saw this repo should pass.
+- **Prefer scenario-framed, application-level questions.** Put Claude in a realistic situation (a support agent looping, an extractor failing validation, a token budget blowing out, a secret needing rotation) and make the learner choose or justify the right primitive, parameter, or design. Favor the exam's own vocabulary (agentic loop, `stop_reason`, `tool_choice`, prompt caching, context window, structured errors) over repo-local names.
+- **Use exam-shaped formats.** Scenario multiple-choice with plausible distractors, "which of these is *not* true", compare-two-approaches, or short "explain why" prompts. When you use distractors, make the learner say why each wrong option is wrong - that is a CCA-F habit.
+- **Stay off repo trivia.** No questions about file paths, script flags, sidecar ports, kernel names, this repo's model policy, or which segment covers which domain. Those are logistics, not exam objectives. The public CCA-F exam domains and task statements are the syllabus; the repo is only how the learner studied them.
 
 Verdict for the topic: `Pass` (every criterion met, defended cleanly), `Partial` (right idea, a piece missing), or `Miss` (did not hold up).
 
@@ -46,7 +53,12 @@ Verdict for the topic: `Pass` (every criterion met, defended cleanly), `Partial`
 
 Write to `CCA-F-CHECKPOINT-LOG.md` (obey repo voice rules: no em dashes, ` - ` instead, Azure-first if cloud comes up, bold key terms):
 
-1. **Append a dated narrative entry** below the existing ones: `## <today's date> - <topic(s)> checkpoint` (use today's date from context), then **Scope**, **Verdict**, one block per question (**answer given**, **verdict**, **correct framing**), and a **Remediation** list if the verdict is not `Pass`.
+1. **Append a dated narrative entry** below the existing ones: `## <today's date> - <topic(s)> checkpoint` (use today's date from context), then **Scope**, **Verdict**, one block per question, and a **Remediation** list if the verdict is not `Pass`. Each question block carries, in this order:
+   - **Answer given** - what the learner actually said.
+   - **Verdict** - `Pass` / `Partial` / `Miss` and a one-line judgment.
+   - **Explanation** - a full, exam-quality explanation of the *correct* answer, written **for every question regardless of verdict** so the log reads as a study resource cold. State the concept as the CCA-F exam tests it, not as this repo demonstrates it. On a `Partial` or `Miss`, the explanation also names precisely what the learner got wrong or left out.
+
+   This **Explanation** line is not optional and is not reserved for wrong answers - a clean `Pass` still gets one. (Older entries may also carry a `Correct framing` or `Sharpening` line; those are equivalent and may stay, but every new block uses **Explanation**.)
 2. **Update the status-table row** for the quizzed topic(s) (insert one if absent): **Last checkpoint** = today, **Verdict** = the judged result, a one-line **Notes**, and **Plan ticked?** = `Yes` only if Step 6 ticks it this run, else `No`.
 
 ## Step 6 - Tick the plan on a pass, then cascade
