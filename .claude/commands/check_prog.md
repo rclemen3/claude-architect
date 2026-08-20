@@ -38,25 +38,30 @@ Print, changing nothing:
 
 On a yes, look up the matching row in the DoD table and check each criterion:
 - **Objective criteria** (cells ran, teardown/archive cells ran, sidecar bound its port): state them and ask the learner to confirm.
-- **Demonstrable criteria** (explain out loud, restate a concept, why each distractor fails, the Day gate questions): **quiz the learner** with 2 to 4 targeted questions. Judge each answer honestly - a "mostly" is a `Partial`, not a `Pass`. Do not wave anything through.
+- **Demonstrable criteria** (explain out loud, restate a concept, why each distractor fails, the Day gate questions): **quiz the learner** with 2 to 4 targeted questions. Judge each answer honestly - a wrong pick is a `Miss` for that question; do not wave anything through.
 
-**Quiz style - write CCA-F exam questions, not repo-recall questions.** The target topic and its task statements (TSx.y) fix the **subject** a question probes, but the question itself must look like one the learner will meet on the real CCA-F exam, not a quiz about this repo:
+**Quiz format - single-answer multiple choice, exactly like the real exam.** Every question is one stem plus **four options labeled A, B, C, D, with exactly one correct answer**. The learner replies with a single letter. Do **not** ask free-writing, "explain why", or short-answer questions - the real CCA-F exam is select-one-of-four, so the calibration quiz must match it. Present all options; wait for the learner's letter before revealing the answer.
+
+- **Write real exam distractors.** All three wrong options must be plausible to someone who half-understands the concept - a common misconception, a nearby-but-wrong primitive, a right idea applied to the wrong situation. No throwaway or obviously-absurd options. The learner should have to actually know the concept to rule them out.
+- **After the learner picks, you supply the distractor rationale.** The learner only selects a letter; you then state which is correct and, in the Step 5 log, explain why each of the other three is wrong. Do not require the learner to write out reasoning - grade the letter.
+
+**Quiz subject - write CCA-F exam questions, not repo-recall questions.** The target topic and its task statements (TSx.y) fix the **subject** a question probes, but the question itself must look like one the learner will meet on the real CCA-F exam, not a quiz about this repo:
 
 - **Test the domain concept generally, not the demo.** Ask what a control does, when to reach for it, and how it behaves in production - not "what did that notebook cell print" or "which file holds the MCP config." A learner who memorized this repo but does not understand the concept should fail; a learner who understands the concept but never saw this repo should pass.
-- **Prefer scenario-framed, application-level questions.** Put Claude in a realistic situation (a support agent looping, an extractor failing validation, a token budget blowing out, a secret needing rotation) and make the learner choose or justify the right primitive, parameter, or design. Favor the exam's own vocabulary (agentic loop, `stop_reason`, `tool_choice`, prompt caching, context window, structured errors) over repo-local names.
-- **Use exam-shaped formats.** Scenario multiple-choice with plausible distractors, "which of these is *not* true", compare-two-approaches, or short "explain why" prompts. When you use distractors, make the learner say why each wrong option is wrong - that is a CCA-F habit.
+- **Prefer scenario-framed, application-level questions.** Put Claude in a realistic situation (a support agent looping, an extractor failing validation, a token budget blowing out, a secret needing rotation) and make the learner choose the right primitive, parameter, or design from the four options. Favor the exam's own vocabulary (agentic loop, `stop_reason`, `tool_choice`, prompt caching, context window, structured errors) over repo-local names.
 - **Stay off repo trivia.** No questions about file paths, script flags, sidecar ports, kernel names, this repo's model policy, or which segment covers which domain. Those are logistics, not exam objectives. The public CCA-F exam domains and task statements are the syllabus; the repo is only how the learner studied them.
 
-Verdict for the topic: `Pass` (every criterion met, defended cleanly), `Partial` (right idea, a piece missing), or `Miss` (did not hold up).
+Each question is graded on the letter alone: the learner's pick is either **correct** or **wrong**. Verdict for the topic: `Pass` (objective criteria met and every quiz question answered correctly), `Partial` (most correct, one slip on a non-core question), or `Miss` (a core question wrong, or several wrong).
 
 ## Step 5 - Log the checkpoint (whenever a quiz ran)
 
 Write to `CCA-F-CHECKPOINT-LOG.md` (obey repo voice rules: no em dashes, ` - ` instead, Azure-first if cloud comes up, bold key terms):
 
-1. **Append a dated narrative entry** below the existing ones: `## <today's date> - <topic(s)> checkpoint` (use today's date from context), then **Scope**, **Verdict**, one block per question, and a **Remediation** list if the verdict is not `Pass`. Each question block carries, in this order:
-   - **Answer given** - what the learner actually said.
-   - **Verdict** - `Pass` / `Partial` / `Miss` and a one-line judgment.
-   - **Explanation** - a full, exam-quality explanation of the *correct* answer, written **for every question regardless of verdict** so the log reads as a study resource cold. State the concept as the CCA-F exam tests it, not as this repo demonstrates it. On a `Partial` or `Miss`, the explanation also names precisely what the learner got wrong or left out.
+1. **Append a dated narrative entry** below the existing ones: `## <today's date> - <topic(s)> checkpoint` (use today's date from context), then **Scope**, **Verdict**, one block per question, and a **Remediation** list if the verdict is not `Pass`. Record the full question with its four options so the log reads as a study resource cold. Each question block carries, in this order:
+   - **Question and options** - the stem and all four labeled options A-D.
+   - **Answer given** - the letter the learner picked, and the correct letter (e.g. `Picked B; correct is C`).
+   - **Verdict** - `Correct` or `Wrong` and a one-line judgment.
+   - **Explanation** - a full, exam-quality explanation that names the correct option **and states why each of the other three distractors is wrong**, written **for every question regardless of verdict** so the log reads as a study resource cold. State the concept as the CCA-F exam tests it, not as this repo demonstrates it.
 
    This **Explanation** line is not optional and is not reserved for wrong answers - a clean `Pass` still gets one. (Older entries may also carry a `Correct framing` or `Sharpening` line; those are equivalent and may stay, but every new block uses **Explanation**.)
 2. **Update the status-table row** for the quizzed topic(s) (insert one if absent): **Last checkpoint** = today, **Verdict** = the judged result, a one-line **Notes**, and **Plan ticked?** = `Yes` only if Step 6 ticks it this run, else `No`.

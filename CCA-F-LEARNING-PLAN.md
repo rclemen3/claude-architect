@@ -11,25 +11,19 @@ A self-paced path through **all study material in this repo**, divided by CCA-F 
 ---
 
 <!-- REPLAN:START -->
-## Replanned schedule (target: 2026-08-20, 3 days, replanned 2026-08-17)
+## Replanned schedule (target: 2026-08-19, 2 days, replanned 2026-08-18)
 
-**27 of 49** study items done; **~21 hours** of study remaining; **~7 hrs/day** over 3 days. Under the 8 hrs/day ceiling, so nothing is trimmed - all load-bearing material stays in. **Domain 1 is fully closed** and Domain 2 is one hands-on item short; the three replan days carry the open D2 item plus all of **D3, D4, D5, and integration**.
+**~9.7 hours** of study remaining across the tail of **D5** and all of **integration**; **~4.9 hrs/day** over 2 days. Well under the 8 hrs/day ceiling, so nothing is trimmed - all load-bearing material stays in. You reported **Topic 4.1 done** and **Topic 4.2's first two bullets done**, so this schedule starts at **Topic 4.2's third bullet** and runs to the end.
 
-### Replan Day 1 - 2026-08-18 (~7.5 hrs) - finish D2, then all of D3
-- [`Topic 2.3 - MCP hands-on`](#topic-23---mcp-hands-on-25-hrs) - the one open D2 item: bring up the MCP sidecars (Inspector on 6274, CLI REPL), **probe the port to confirm it bound**, and invoke a live tool.
-- [`Topic 3.1 - Configuration hierarchy`](#topic-31---configuration-hierarchy-25-hrs) - Claude Code half of Segment 2 + [`docs/domain-3-claude-code.md`](docs/domain-3-claude-code.md).
-- [`Topic 3.2 - D3 exam mapping`](#topic-32---d3-exam-mapping-2-hrs) - exam-mastery Part 3 + this repo's `.claude/settings.json` and `.vscode/mcp.json` as live config.
-- [`Topic 3.3 - Workflows: CI/CD + headless`](#topic-33---workflows-cicd--headless-2-hrs) - the CI/CD scenario walkthrough + `claude -p` headless vs plan mode.
-- **Gates:** the **Day 2 gate** (three schema/description fixes for a mis-called tool; each `tool_choice` mode to its guarantee) - concept half already defended, so confirm it holds once the hands-on is done - and the **Day 3 gate** (which `CLAUDE.md` wins on conflict; which hook fires **after** a tool result and what you would do there).
+> **Ticking note:** Topics 4.1 and 4.2 are still `[ ]` in the day sections below because completion flows only through **`/check_prog`**, not through `/replan`. Run **`/check_prog 4.1`** and **`/check_prog 4.2`** to close those boxes properly once you can explain them. This block only reschedules; it never ticks.
 
-### Replan Day 2 - 2026-08-19 (~6.5 hrs) - D4 + D5
-- [`Topic 4.1 - Structured output`](#topic-41---structured-output-25-hrs) - Segment 3 invoice extractor (forced `tool_choice`, Pydantic **retry on validation error**, `cache_control` pinning) + [`docs/domain-4-prompts.md`](docs/domain-4-prompts.md) + exam-mastery Part 4 + **read** managed 04.
-- [`Topic 4.2 - Context management & reliability`](#topic-42---context-management--reliability-2-hrs) - [`docs/domain-5-context.md`](docs/domain-5-context.md) + exam-mastery Part 5 + **read** managed 05.
+### Replan Day 1 - 2026-08-18 (~5.2 hrs) - finish D5, then start integration
+- [`Topic 4.2 - Context management & reliability`](#topic-42---context-management--reliability-2-hrs) - **third bullet only** (your start point): **read** `notebooks/06-managed-agents/05_context_and_escalation.ipynb` (read-only; `client.beta.agents` is not provisioned for this org).
 - [`Topic 4.3 - Control surfaces depth pass`](#topic-43---control-surfaces-depth-pass-2-hrs-all-domains) - Segment 2.5 (`tool_choice` + `disable_parallel_tool_use`, rare `stop_reason` values, `stop_sequences`/`max_tokens` levers, MCP `list_tools`, the Console asset surface).
+- [`Topic 5.1 - Coverage-complete pass`](#topic-51---coverage-complete-pass-25-hrs) - `cca-f-exam-mastery.ipynb` **end to end** including Part 6 (30/30 coverage matrix) + **read** managed 06 capstone.
 - **Gate:** the **Day 4 gate** (the three escalation triggers and the two provenance moves; why forced `tool_choice` guarantees schema **shape** but not **validity**, hence the retry loop).
 
-### Replan Day 3 - 2026-08-20 (~7 hrs) - integration, capstone, readiness
-- [`Topic 5.1 - Coverage-complete pass`](#topic-51---coverage-complete-pass-25-hrs) - `cca-f-exam-mastery.ipynb` **end to end** including Part 6 (30/30 coverage matrix) + **read** managed 06 capstone.
+### Replan Day 2 - 2026-08-19 (~4.5 hrs) - capstone + exam readiness
 - [`Topic 5.2 - Weighted practice`](#topic-52---weighted-practice-25-hrs) - Segment 4 capstone (10-question weighted sample) + the full **60-question bank**, one domain at a time (D1:11, D2:8, D3:20, D4:9, D5:12).
 - [`Topic 5.3 - Remediate + calibrate`](#topic-53---remediate--calibrate-2-hrs) - explain every wrong answer out loud, fill gaps from one authoritative cookbook, then take **Anthropic's official Practice Exam**.
 - **Gate:** the **Day 5 gate = Exam-readiness gate** (see the bottom of this file) - your go/no-go before booking.
@@ -146,18 +140,18 @@ The agentic loop is just `messages.create()` in a while-loop with a `stop_reason
 **Goal:** guaranteed structured output via forced tool use + validation retry, then the reliability layer - context preservation, escalation, provenance.
 
 ### Topic 4.1 - Structured output (≈2.5 hrs)
-- [ ] Work `notebooks/segment-3-invoice-extractor.ipynb` - forced `tool_choice`, Pydantic validation with **retry on validation error**, case-facts pinning via `cache_control`, confidence-routing triage. (This notebook and one exam-mastery cell use **Sonnet 4.6** on purpose - the reasoning-depth exception.)
-- [ ] Read [`docs/domain-4-prompts.md`](docs/domain-4-prompts.md)
-- [ ] Walk **Part 4** of `cca-f-exam-mastery.ipynb` (TS4.1-TS4.6)
-- [ ] **Read** `notebooks/06-managed-agents/04_structured_output_and_validation.ipynb` (D4) - **read-only** (`client.beta.agents` not provisioned for this org; do not run)
+- [x] Work `notebooks/segment-3-invoice-extractor.ipynb` - forced `tool_choice`, Pydantic validation with **retry on validation error**, case-facts pinning via `cache_control`, confidence-routing triage. (This notebook and one exam-mastery cell use **Sonnet 4.6** on purpose - the reasoning-depth exception.)
+- [x] Read [`docs/domain-4-prompts.md`](docs/domain-4-prompts.md)
+- [x] Walk **Part 4** of `cca-f-exam-mastery.ipynb` (TS4.1-TS4.6)
+- [x] **Read** `notebooks/06-managed-agents/04_structured_output_and_validation.ipynb` (D4) - **read-only** (`client.beta.agents` not provisioned for this org; do not run)
 
 ### Topic 4.2 - Context management & reliability (≈2 hrs)
-- [ ] Read [`docs/domain-5-context.md`](docs/domain-5-context.md) - context preservation, escalation design, error propagation, provenance/source attribution
-- [ ] Walk **Part 5** of `cca-f-exam-mastery.ipynb` (TS5.1-TS5.6)
-- [ ] **Read** `notebooks/06-managed-agents/05_context_and_escalation.ipynb` (D5) - **read-only** (`client.beta.agents` not provisioned for this org; do not run)
+- [x] Read [`docs/domain-5-context.md`](docs/domain-5-context.md) - context preservation, escalation design, error propagation, provenance/source attribution
+- [x] Walk **Part 5** of `cca-f-exam-mastery.ipynb` (TS5.1-TS5.6)
+- [x] **Read** `notebooks/06-managed-agents/05_context_and_escalation.ipynb` (D5) - **read-only** (`client.beta.agents` not provisioned for this org; do not run)
 
 ### Topic 4.3 - Control surfaces depth pass (≈2 hrs, all domains)
-- [ ] Work `notebooks/segment-2-5-control-surfaces.ipynb` - full `tool_choice` + `disable_parallel_tool_use`, the rare `stop_reason` values, `stop_sequences`/`max_tokens` as levers, MCP `list_tools`, and the live Console asset surface (`memory_stores`, `vaults`, `agents`, `sessions`)
+- [x] Work `notebooks/segment-2-5-control-surfaces.ipynb` - full `tool_choice` + `disable_parallel_tool_use`, the rare `stop_reason` values, `stop_sequences`/`max_tokens` as levers, MCP `list_tools`, and the live Console asset surface (`memory_stores`, `vaults`, `agents`, `sessions`)
 
 **Day 4 gate:** Can you state the **three legitimate escalation triggers** and the two moves for provenance? Can you explain why forced `tool_choice` guarantees schema shape but not schema **validity** (hence the retry loop)?
 
@@ -168,12 +162,12 @@ The agentic loop is just `messages.create()` in a while-loop with a `stop_reason
 **Goal:** one coverage-complete pass, then calibrate against the weighted practice bank, then remediate weak domains.
 
 ### Topic 5.1 - Coverage-complete pass (≈2.5 hrs)
-- [ ] Walk `notebooks/cca-f-exam-mastery.ipynb` **end to end**, including **Part 6** (exam mechanics, the 30-task-statement coverage matrix, one-page cheat sheet, self-check). It self-audits **30/30** task statements.
-- [ ] **Read** `notebooks/06-managed-agents/06_cca_f_capstone.ipynb` (all domains) - **read-only** (`client.beta.agents` not provisioned for this org; do not run)
+- [x] Walk `notebooks/cca-f-exam-mastery.ipynb` **end to end**, including **Part 6** (exam mechanics, the 30-task-statement coverage matrix, one-page cheat sheet, self-check). It self-audits **30/30** task statements.
+- [x] **Read** `notebooks/06-managed-agents/06_cca_f_capstone.ipynb` (all domains) - **read-only** (`client.beta.agents` not provisioned for this org; do not run)
 
 ### Topic 5.2 - Weighted practice (≈2.5 hrs)
-- [ ] Work `notebooks/segment-4-cca-f-capstone.ipynb` (cert briefing + the 10-question domain-weighted live sample)
-- [ ] Take the full **60-question bank** in [`docs/PRACTICE-QUESTIONS.md`](docs/PRACTICE-QUESTIONS.md), **one domain at a time** (D1:11, D2:8, D3:20, D4:9, D5:12). Get a domain to 100%, then mix.
+- [x] Work `notebooks/segment-4-cca-f-capstone.ipynb` (cert briefing + the 10-question domain-weighted live sample)
+- [x] Take the full **60-question bank** in [`docs/PRACTICE-QUESTIONS.md`](docs/PRACTICE-QUESTIONS.md), **one domain at a time** (D1:11, D2:8, D3:20, D4:9, D5:12). Get a domain to 100%, then mix.
 
 ### Topic 5.3 - Remediate + calibrate (≈2 hrs)
 - [ ] For every wrong answer, **explain it out loud** - not "the answer was C" but *why* the distractors fail. If you can't, re-read that domain scaffold.
